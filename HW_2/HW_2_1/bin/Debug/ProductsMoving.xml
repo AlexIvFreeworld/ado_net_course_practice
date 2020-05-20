@@ -18,21 +18,14 @@
     <ID>3</ID>
     <IDproduct>3</IDproduct>
     <CountStore>500</CountStore>
-    <CountShop>200</CountShop>
-    <Sold>0</Sold>
+    <CountShop>199</CountShop>
+    <Sold>1</Sold>
   </ProductMoving>
   <ProductMoving>
     <ID>4</ID>
     <IDproduct>4</IDproduct>
     <CountStore>800</CountStore>
-    <CountShop>190</CountShop>
-    <Sold>110</Sold>
-  </ProductMoving>
-  <ProductMoving>
-    <ID>6</ID>
-    <IDproduct>6</IDproduct>
-    <CountStore>40</CountStore>
-    <CountShop>45</CountShop>
-    <Sold>5</Sold>
+    <CountShop>189</CountShop>
+    <Sold>111</Sold>
   </ProductMoving>
 </ArrayOfProductMoving>

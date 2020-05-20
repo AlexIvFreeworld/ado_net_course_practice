@@ -13,15 +13,8 @@ namespace Lesson_6_Cashier
 {
     public partial class Manager : Form
     {
-       // private List<Product> Products = new List<Product>();
-        //private List<ProductSell> ProductsSell = new List<ProductSell>();
-        //private List<User> Users = new List<User>();
         private string hashPassword => Helper.CreateMD5(textBox8.Text);
         private FormInformation F = null;
-        //private List<ProductShop> Products = new List<ProductShop>();
-        //private List<ProductMoving> ProductsMoving = new List<ProductMoving>();
-//        private List<UserShop> Users = new List<UserShop>();
-  //      private List<UserRoleShop> UserRoles = new List<UserRoleShop>();
         public Manager()
         {
             InitializeComponent();
@@ -31,7 +24,6 @@ namespace Lesson_6_Cashier
         {
             double totalCost = 0;
             double totalProfit = 0;
-            // Products = HelperProduct.LoadUsersFromFile();
             BridgeToBD.LoadProductShopFromDB(BridgeToBD.ChoiceBD);
             BridgeToBD.LoadProductMovingFromDB(BridgeToBD.ChoiceBD);
             string[] str = new string[7]; 
@@ -78,8 +70,6 @@ namespace Lesson_6_Cashier
         }
         private void UsersViewReload()
         {
-            //Users = Helper.LoadUsersFromFile();
-            //Users = Helper.LoadFromSql();
             BridgeToBD.LoadUserShopFromDB(BridgeToBD.ChoiceBD);
             BridgeToBD.LoadUserRoleShopFromDB(BridgeToBD.ChoiceBD);
             listView1.Items.Clear();
@@ -155,8 +145,6 @@ namespace Lesson_6_Cashier
             dataGridView1.Columns.Add(column6);
             dataGridView1.Columns.Add(column7);
 
-            // var row = new DataGridViewRow();
-            // var cell = new DataGridView();
             dataGridView1ReLoad();
             dataGridView2ReLoad();
             UsersViewReload();
@@ -174,20 +162,14 @@ namespace Lesson_6_Cashier
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // check exist empty fields
             if (textBox3.Text == "" || textBox4.Text == "" || textBox5.Text == "" || textBox6.Text == "" || comboBox1.Text == "" || comboBox2.Text == "")
             {
                 MessageBox.Show("Вы не заполнили некоторые поля", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            // load needed tables from bd to collections
               BridgeToBD.LoadProductShopFromDB(BridgeToBD.ChoiceBD);
-           // ProductsMoving = BridgeToBD.LoadProductMovingFromDB(BridgeToBD.ChoiceBD);
-            // for action add - check exist same name in bd
             if (!BridgeToBD.Products.Any(it => it.Name == textBox3.Text)) {
-                // create new object with values from fields or take needed id for deleting
                 ProductShop pr = new ProductShop();
-                //pr.ID = Products.Last().ID + 1;
                 pr.Name = textBox3.Text;
                 pr.PriceSell = (float)Convert.ToDouble(textBox5.Text);
                 pr.PriceBuy = (float)Convert.ToDouble(textBox4.Text);
@@ -209,18 +191,10 @@ namespace Lesson_6_Cashier
                 {
                     MessageBox.Show("Некорректно выбран склад");
                 }
-               // Products.Add(pr);
-               // ProductsMoving.Add(prmove);
-                //HelperProduct.SaveUsersFromFile(Products);
-                //HelperProduct.InsertToSql(pr);
-
-                // call needed method from bridge for changing bd
                 BridgeToBD.SaveProductShopToBD(pr, BridgeToBD.ChoiceBD);
-                // BridgeToBD.SaveProductMovingToSQL(ProductsMoving);
                 BridgeToBD.LoadProductShopFromDB(BridgeToBD.ChoiceBD);
                 prmove.IDproduct = BridgeToBD.Products.Last().ID;
                 BridgeToBD.SaveProductMovingToBD(prmove, BridgeToBD.ChoiceBD);
-                // if it needed  - reload window
                 dataGridView1ReLoad();
             }
             else
@@ -235,15 +209,11 @@ namespace Lesson_6_Cashier
             {
                 foreach(DataGridViewRow row in dataGridView1.SelectedRows)
                 {
-                    // MessageBox.Show(Products.First(it => it.Name == row.Cells[0].Value.ToString()).Name);
-                    // Products.Remove(Products.First(it => it.Name == row.Cells[0].Value.ToString()));
-                    //HelperProduct.DeleteFromSql(row.Cells[0].Value.ToString());
                     int id = BridgeToBD.Products.First(it => it.Name == row.Cells[0].Value.ToString()).ID;
                     int id_prmove = BridgeToBD.ProductsMoving.First(it => it.IDproduct == id).ID;
                     BridgeToBD.SaveProductMovingToBD(id_prmove, BridgeToBD.ChoiceBD);
                     BridgeToBD.SaveProductShopToBD(id,BridgeToBD.ChoiceBD);
                 }
-               // HelperProduct.SaveUsersFromFile(Products);
                 dataGridView1ReLoad();
             }
             else
@@ -264,11 +234,8 @@ namespace Lesson_6_Cashier
                 MessageBox.Show("Пользователь с таким логином уже существует", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            // BridgeToBD.ListUser.Add(new User() { Login = textBox7.Text, Passwword = hashPassword, UserRole = (UserRole)Enum.Parse(typeof(UserRole), comboBox3.Text)});
             int id_role = BridgeToBD.ListUserRole.First(it => it.Role.ToString() == comboBox3.Text).ID;
             UserShop us = new UserShop() { Login = textBox7.Text, Passwword = hashPassword, IDrole = id_role};
-            // Helper.SaveBridgeToBD.ListUserFromFile(Users);
-            //Helper.InsertToSql(us);
             BridgeToBD.SaveUserShopToBD(us, BridgeToBD.ChoiceBD);
             UsersViewReload();
         }
@@ -298,11 +265,7 @@ namespace Lesson_6_Cashier
                     return;
                 }
             }
-            //MessageBox.Show("Удаление этого пользователя возможно" + listView1.SelectedItems[0].SubItems[1].Text);
-            //Users.Remove(Users.First(it => it.Login == listView1.SelectedItems[0].Text));
-            //Helper.SaveUsersFromFile(Users);
             int id = BridgeToBD.ListUser.First(it => it.Login == listView1.SelectedItems[0].Text).ID;
-            //Helper.DeleteFromSql(listView1.SelectedItems[0].Text);
             BridgeToBD.SaveUserShopToBD(id, BridgeToBD.ChoiceBD);
             UsersViewReload();
             
@@ -316,7 +279,6 @@ namespace Lesson_6_Cashier
                 MessageBox.Show("Ни один пользователь не выбран", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            //Users = Helper.LoadFromSql();
             BridgeToBD.LoadUserShopFromDB(BridgeToBD.ChoiceBD);
             int us_role_manager = BridgeToBD.ListUserRole.First(it => it.Role.ToString() == "Manager").ID;
             if (BridgeToBD.ListUser.Count(it => it.IDrole == us_role_manager) <= 1 && listView1.SelectedItems[0].SubItems[1].Text == "Manager")
@@ -329,15 +291,11 @@ namespace Lesson_6_Cashier
                 MessageBox.Show("Поля заполнены не полностью", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            //var user =  Users.First(it => it.Login == listView1.SelectedItems[0].SubItems[0].Text);
             string currentLogin = listView1.SelectedItems[0].SubItems[0].Text;
             UserShop user = BridgeToBD.ListUser.First(it => it.Login == currentLogin);
             user.Login = textBox7.Text;
             user.Passwword = hashPassword;
-            //user.UserRole = (UserRole)Enum.Parse(typeof(UserRole), comboBox3.Text);
             user.IDrole = BridgeToBD.ListUserRole.First(it => it.Role.ToString() == comboBox3.Text).ID;
-            //Helper.SaveUsersFromFile(Users);
-            //Helper.UpdateToSql(currentLogin, user);
             BridgeToBD.SaveUserShopToBD(user, BridgeToBD.ChoiceBD);
             UsersViewReload();
             
@@ -345,13 +303,10 @@ namespace Lesson_6_Cashier
 
         private void button5_MouseHover(object sender, EventArgs e)
         {
-           // F = new FormInformation();
-          //  F.Show();
         }
 
         private void button5_MouseLeave(object sender, EventArgs e)
         {
-           // F?.Close();
         }
 
         private void button6_Click(object sender, EventArgs e)

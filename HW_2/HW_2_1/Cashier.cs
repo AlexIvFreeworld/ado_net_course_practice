@@ -9,11 +9,7 @@ namespace Lesson_6_Cashier
 {
     public partial class Cashier : Form
     {
-        // private List<Product> Products = new List<Product>();
-//        private List<ProductShop> Products = new List<ProductShop>();
-  //      private List<ProductMoving> ProductsMoving = new List<ProductMoving>();
         private BindingList<ProductCashier> ProductCashiers = new BindingList<ProductCashier>();
-    //    private List<ProductSell> ProductsSell = new List<ProductSell>();
 
         public Cashier()
         {
@@ -35,52 +31,13 @@ namespace Lesson_6_Cashier
 
         private void Cashier_Load(object sender, EventArgs e)
         {
-            //Products = HelperProduct.LoadUsersFromFile();
-            // Products = HelperProduct.LoadFromSql();
             BridgeToBD.LoadProductShopFromDB(BridgeToBD.ChoiceBD);
-            // for first creating file xml
-            //Products.ForEach(it => { ProductSell pr = new ProductSell(); pr.Name = it.Name; pr.PriceSell = it.Price; pr.PriceBuy = it.PricePurchasing; pr.CountSell = 0; ProductsSell.Add(pr); });
-            //HelperProductSell.SaveFromFile(ProductsSell);
-            //ProductsSell =  HelperProductSell.LoadFromFile();
-            //ProductsSell = HelperProductSell.LoadFromSql();
             BridgeToBD.LoadProductMovingFromDB(BridgeToBD.ChoiceBD);
-           //int countEquals;
-           /*
-            foreach(Product product in Products)
-            {
-               // countEquals = 0;
-               if(ProductsSell.Any(it => it.Name == product.Name))
-                {
-                    // countEquals++;
-                    continue;
-                }
-                HelperProductSell.InsertToSql(product);
-                /*foreach (ProductSell productSell in ProductsSell)
-                {
-                    if(product.Name == productSell.Name)
-                    {
-                        countEquals++;
-                    }
-                }
-/*                if (countEquals == 0)
-                {
-                    ProductSell prSell = new ProductSell();
-                    prSell.Name = product.Name;
-                    prSell.PriceBuy = product.PricePurchasing;
-                    prSell.PriceSell = product.Price;
-                    prSell.CountSell = 0;
-                    prSell.UoM = product.UoM;
-                    ProductsSell.Add(prSell);
-                }
-            }
-        */
-            //  HelperProductSell.SaveFromFile(ProductsSell);
-          //  ProductsSell = HelperProductSell.LoadFromSql();
         }
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
-            var product = BridgeToBD.Products.First(it => it.Name == listBox1.SelectedItem);
+            var product = BridgeToBD.Products.First(it => it.Name == listBox1.SelectedItem.ToString());
             var productCashier = new ProductCashier() { Name = product.Name, Price = product.PriceSell, UoM = product.UoM, CountByPrices = 1.0 };
             if (ProductCashiers.Any(it => it.Name == productCashier.Name))
             {
@@ -122,34 +79,19 @@ namespace Lesson_6_Cashier
         {
             BridgeToBD.LoadProductShopFromDB(BridgeToBD.ChoiceBD);
             BridgeToBD.LoadProductMovingFromDB(BridgeToBD.ChoiceBD);
-            //write from list cashier to xml
-            //  string name = "";
-            // double newCountProductSell = 0.00, newCountProduct = 0.00;
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 var product = BridgeToBD.Products.First(it => it.Name == row.Cells[0].Value.ToString());
                 var productMoving = BridgeToBD.ProductsMoving.First(it => it.IDproduct == product.ID);
-               // int id_product = Products.First(it => it.Name == row.Cells[0].Value.ToString()).ID;
                 if (productMoving.CountShop < Convert.ToDouble(row.Cells[2].Value.ToString()))
                 {
                     MessageBox.Show("Товара " + row.Cells[0].Value.ToString() + " недостаточно в магазине", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     continue;
                 }
-                // ProductsSell.First(it => it.Name == row.Cells[0].Value.ToString()).CountSell+=Convert.ToDouble(row.Cells[2].Value.ToString());
-                // Products.First(it => it.Name == row.Cells[0].Value.ToString()).CountMarket -= Convert.ToDouble(row.Cells[2].Value.ToString());
-               // name = row.Cells[0].Value.ToString();
                 productMoving.CountShop -= Convert.ToDouble(row.Cells[2].Value.ToString());
                 productMoving.Sold += Convert.ToDouble(row.Cells[2].Value.ToString());
-
-                // newCountProductSell = ProductsSell.First(it => it.Name == row.Cells[0].Value.ToString()).CountSell += Convert.ToDouble(row.Cells[2].Value.ToString());
-                //  newCountProduct = Products.First(it => it.Name == row.Cells[0].Value.ToString()).CountMarket -= Convert.ToDouble(row.Cells[2].Value.ToString());
-                //  HelperProductSell.UpdateCountToSql(name, newCountProductSell);
-                //  HelperProduct.UpdateCountToSql(name, newCountProduct);
                 BridgeToBD.SaveProductMovingToBD(productMoving, BridgeToBD.ChoiceBD);
             }
-            // HelperProductSell.SaveFromFile(ProductsSell);
-            // HelperProduct.SaveUsersFromFile(Products);
-            // Products.ForEach(UpdateProduct);
             panel1.Visible = false;
         }
 

@@ -12,9 +12,6 @@ namespace Lesson_6_Casher
 {
     public partial class Autorization : Form
     {
-        //private List<User> ListUser = new List<User>();
-        //private List<UserShop> ListUser = new List<UserShop>();
-
         private string Login => logintextBox.Text;
         private string Password => Helper.CreateMD5(passwordTextBox.Text);
 
@@ -27,37 +24,9 @@ namespace Lesson_6_Casher
         {
             panel1.Visible = false;
             comboBox1.Text = TypeBD.SQL.ToString();
+            comboBox1.Items.Add(TypeBD.SQL.ToString());
             comboBox1.Items.Add(TypeBD.XML.ToString());
             comboBox1.Items.Add(TypeBD.Entity.ToString());
-            //   ListUser = Helper.LoadUsersFromFile(); 
-            //ListUser = Helper.LoadFromSql();
-            //BridgeToBD.LoadUserShopFromDB(TypeBD.SQL);
-            // single saving XML
-            /*
-                var xmlReader = new XmlSerializer(typeof(List<UserShop>));
-                using (var stream = File.Create(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Users.xml")))
-                {
-                    xmlReader.Serialize(stream, BridgeToBD.ListUser);
-                }
-            BridgeToBD.LoadProductMovingFromDB(TypeBD.SQL);
-            var xmlReader2 = new XmlSerializer(typeof(List<ProductMoving>));
-            using (var stream = File.Create(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "ProductsMoving.xml")))
-            {
-                xmlReader2.Serialize(stream, BridgeToBD.ProductsMoving);
-            }
-            BridgeToBD.LoadProductShopFromDB(TypeBD.SQL);
-            var xmlReader3 = new XmlSerializer(typeof(List<ProductShop>));
-            using (var stream = File.Create(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Products.xml")))
-            {
-                xmlReader3.Serialize(stream, BridgeToBD.Products);
-            }
-            BridgeToBD.LoadUserRoleShopFromDB(TypeBD.SQL);
-            var xmlReader4 = new XmlSerializer(typeof(List<UserRoleShop>));
-            using (var stream = File.Create(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "UserRoles.xml")))
-            {
-                xmlReader4.Serialize(stream, BridgeToBD.ListUserRole);
-            }
-            */
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -13,10 +13,6 @@ using System.Xml.Serialization;
 
 namespace Lesson_6_Cashier
 {
-    /*    public class Generic<T>
-        {
-            public T Field;
-        }*/
     public static class BridgeToBD
     {
         private static string PathFileProducts;
@@ -56,7 +52,6 @@ namespace Lesson_6_Cashier
         }
         public static void LoadUserShopFromDB(TypeBD typeBD)
         {
-          //  List<UserShop> TempUsers = new List<UserShop>();
             switch (typeBD)
             {
                 case TypeBD.XML:
@@ -71,7 +66,6 @@ namespace Lesson_6_Cashier
                     MessageBox.Show("ERROR typeBD");
                     break;
             }
-          //  return TempUsers;
         }
         public static void LoadProductMovingFromDB(TypeBD typeBD)
         {
@@ -92,7 +86,6 @@ namespace Lesson_6_Cashier
         }
         public static void LoadUserRoleShopFromDB(TypeBD typeBD)
         {
-           // List<UserRoleShop> TempUsersRole = new List<UserRoleShop>();
             switch (typeBD)
             {
                 case TypeBD.XML:
@@ -107,7 +100,6 @@ namespace Lesson_6_Cashier
                     MessageBox.Show("ERROR typeBD");
                     break;
             }
-           // return TempUsersRole;
         }
         public static void SaveProductShopToBD(ProductShop prShop, TypeBD typeBD)
         {
@@ -548,7 +540,6 @@ namespace Lesson_6_Cashier
         }
         public static void LoadUserShopFromSql()
         {
-            //List<UserShop> listUsers = new List<UserShop>();
             using (var conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
@@ -568,7 +559,6 @@ namespace Lesson_6_Cashier
                     }
                 }
             }
-          //  return listUsers;
         }
         public static void LoadUserShopFromXML()
         {
@@ -578,7 +568,6 @@ namespace Lesson_6_Cashier
                 var xmlReader = new XmlSerializer(typeof(List<UserShop>));
                 using (var stream = File.OpenRead(PathFileUsers))
                 {
-                  //  return (List<UserShop>)xmlReader.Deserialize(stream);
                   ListUser = (List<UserShop>)xmlReader.Deserialize(stream);
                 }
             }
@@ -586,7 +575,6 @@ namespace Lesson_6_Cashier
             {
                 MessageBox.Show("Ошибка загрузки списка пользователей", "ошибка", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-              //  return null;
             }
 
         }
@@ -605,13 +593,11 @@ namespace Lesson_6_Cashier
             {
                 MessageBox.Show("Ошибка загрузки списка пользователей", "ошибка", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-              //  return null;
             }
 
         }
         public static void LoadUserRoleShopFromSql()
         {
-           // List<UserRoleShop> listUsers = new List<UserRoleShop>();
             using (var conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
@@ -629,7 +615,6 @@ namespace Lesson_6_Cashier
                     }
                 }
             }
-         //   return listUsers;
         }
     }
 }
