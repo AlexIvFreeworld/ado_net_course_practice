@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<ArrayOfProductShop xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProductShop>
+    <ID>1</ID>
+    <Name>Гречка</Name>
+    <PriceBuy>30</PriceBuy>
+    <PriceSell>80</PriceSell>
+    <UoM>Piece</UoM>
+  </ProductShop>
+  <ProductShop>
+    <ID>2</ID>
+    <Name>Защитные маски</Name>
+    <PriceBuy>5</PriceBuy>
+    <PriceSell>30</PriceSell>
+    <UoM>Piece</UoM>
+  </ProductShop>
+  <ProductShop>
+    <ID>3</ID>
+    <Name>Яблоки</Name>
+    <PriceBuy>30</PriceBuy>
+    <PriceSell>80</PriceSell>
+    <UoM>Kg</UoM>
+  </ProductShop>
+  <ProductShop>
+    <ID>4</ID>
+    <Name>Вода</Name>
+    <PriceBuy>13</PriceBuy>
+    <PriceSell>23</PriceSell>
+    <UoM>Cans</UoM>
+  </ProductShop>
+</ArrayOfProductShop>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ArrayOfUserRoleShop xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <UserRoleShop>
+    <ID>1</ID>
+    <Role>Cashier</Role>
+  </UserRoleShop>
+  <UserRoleShop>
+    <ID>2</ID>
+    <Role>Manager</Role>
+  </UserRoleShop>
+</ArrayOfUserRoleShop>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Product>
+    <Name>Гречка</Name>
+    <Price>80</Price>
+    <PricePurchasing>30</PricePurchasing>
+    <CountWarehouse>500</CountWarehouse>
+    <CountMarket>450</CountMarket>
+    <UoM>Piece</UoM>
+  </Product>
+  <Product>
+    <Name>Защитные маски</Name>
+    <Price>50</Price>
+    <PricePurchasing>5</PricePurchasing>
+    <CountWarehouse>5000</CountWarehouse>
+    <CountMarket>3960</CountMarket>
+    <UoM>Piece</UoM>
+  </Product>
+  <Product>
+    <Name>Яблоки</Name>
+    <Price>80</Price>
+    <PricePurchasing>30</PricePurchasing>
+    <CountWarehouse>500</CountWarehouse>
+    <CountMarket>450</CountMarket>
+    <UoM>Kg</UoM>
+  </Product>
+  <Product>
+    <Name>Тушенка</Name>
+    <Price>200</Price>
+    <PricePurchasing>100</PricePurchasing>
+    <CountWarehouse>600</CountWarehouse>
+    <CountMarket>550</CountMarket>
+    <UoM>Cans</UoM>
+  </Product>
+  <Product>
+    <Name>Вода</Name>
+    <Price>23</Price>
+    <PricePurchasing>13</PricePurchasing>
+    <CountWarehouse>0</CountWarehouse>
+    <CountMarket>1000</CountMarket>
+    <UoM>Cans</UoM>
+  </Product>
+</ArrayOfProduct>

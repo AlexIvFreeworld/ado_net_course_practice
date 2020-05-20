@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ArrayOfUserShop xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <UserShop>
+    <ID>1</ID>
+    <Login>Login1</Login>
+    <Passwword>827CCB0EEA8A706C4C34A16891F84E7B</Passwword>
+    <IDrole>1</IDrole>
+  </UserShop>
+  <UserShop>
+    <ID>6</ID>
+    <Login>Login2</Login>
+    <Passwword>827CCB0EEA8A706C4C34A16891F84E7B</Passwword>
+    <IDrole>2</IDrole>
+  </UserShop>
+</ArrayOfUserShop>

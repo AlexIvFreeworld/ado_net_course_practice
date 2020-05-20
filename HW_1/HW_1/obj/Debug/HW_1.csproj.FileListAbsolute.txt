@@ -1,0 +1,9 @@
+E:\ITStep\Home_work\ADO_NET\HW_1\HW_1\bin\Debug\HW_1.exe.config
+E:\ITStep\Home_work\ADO_NET\HW_1\HW_1\bin\Debug\HW_1.exe
+E:\ITStep\Home_work\ADO_NET\HW_1\HW_1\bin\Debug\HW_1.pdb
+E:\ITStep\Home_work\ADO_NET\HW_1\HW_1\obj\Debug\HW_1.csprojAssemblyReference.cache
+E:\ITStep\Home_work\ADO_NET\HW_1\HW_1\obj\Debug\HW_1.Form1.resources
+E:\ITStep\Home_work\ADO_NET\HW_1\HW_1\obj\Debug\HW_1.Properties.Resources.resources
+E:\ITStep\Home_work\ADO_NET\HW_1\HW_1\obj\Debug\HW_1.csproj.GenerateResource.cache
+E:\ITStep\Home_work\ADO_NET\HW_1\HW_1\obj\Debug\HW_1.exe
+E:\ITStep\Home_work\ADO_NET\HW_1\HW_1\obj\Debug\HW_1.pdb

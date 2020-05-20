@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<ArrayOfUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <User>
+    <Login>Login1</Login>
+    <Passwword>827CCB0EEA8A706C4C34A16891F84E7B</Passwword>
+    <UserRole>Cashier</UserRole>
+  </User>
+  <User>
+    <Login>Login2</Login>
+    <Passwword>827CCB0EEA8A706C4C34A16891F84E7B</Passwword>
+    <UserRole>Manager</UserRole>
+  </User>
+  <User>
+    <Login>Login4</Login>
+    <Passwword>202CB962AC59075B964B07152D234B70</Passwword>
+    <UserRole>Manager</UserRole>
+  </User>
+  <User>
+    <Login>Login5</Login>
+    <Passwword>C20AD4D76FE97759AA27A0C99BFF6710</Passwword>
+    <UserRole>Manager</UserRole>
+  </User>
+</ArrayOfUser>
