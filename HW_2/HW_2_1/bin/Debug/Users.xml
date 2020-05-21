@@ -12,4 +12,10 @@
     <Passwword>827CCB0EEA8A706C4C34A16891F84E7B</Passwword>
     <IDrole>2</IDrole>
   </UserShop>
+  <UserShop>
+    <ID>7</ID>
+    <Login>Login3</Login>
+    <Passwword>C4CA4238A0B923820DCC509A6F75849B</Passwword>
+    <IDrole>2</IDrole>
+  </UserShop>
 </ArrayOfUserShop>

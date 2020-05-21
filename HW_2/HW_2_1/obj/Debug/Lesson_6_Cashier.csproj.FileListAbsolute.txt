@@ -56,3 +56,11 @@ E:\ITStep\Home_work\ADO_NET\HW_2\HW_2_1\obj\Debug\Lesson_6_Cashier.Properties.Re
 E:\ITStep\Home_work\ADO_NET\HW_2\HW_2_1\obj\Debug\Lesson_6_Cashier.csproj.GenerateResource.cache
 E:\ITStep\Home_work\ADO_NET\HW_2\HW_2_1\obj\Debug\Lesson_6_Cashier.exe
 E:\ITStep\Home_work\ADO_NET\HW_2\HW_2_1\obj\Debug\Lesson_6_Cashier.pdb
+E:\ITStep\Home_work\ADO_NET\HW_2\HW_2_1\bin\Debug\EntityLibrary.dll
+E:\ITStep\Home_work\ADO_NET\HW_2\HW_2_1\bin\Debug\EntityFramework.dll
+E:\ITStep\Home_work\ADO_NET\HW_2\HW_2_1\bin\Debug\EntityLibrary.pdb
+E:\ITStep\Home_work\ADO_NET\HW_2\HW_2_1\bin\Debug\EntityLibrary.dll.config
+E:\ITStep\Home_work\ADO_NET\HW_2\HW_2_1\bin\Debug\EntityFramework.xml
+E:\ITStep\Home_work\ADO_NET\HW_2\HW_2_1\obj\Debug\Lesson_6_Cashier.csproj.CopyComplete
+E:\ITStep\Home_work\ADO_NET\HW_2\HW_2_1\bin\Debug\EntityFramework.SqlServer.dll
+E:\ITStep\Home_work\ADO_NET\HW_2\HW_2_1\bin\Debug\EntityFramework.SqlServer.xml

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using static EntityLibrary.EntityMain;
 
 namespace Lesson_6_Cashier
 {
@@ -44,6 +45,7 @@ namespace Lesson_6_Cashier
                     LoadProductShopFromSql();
                     break;
                 case TypeBD.Entity:
+                    LoadProductShopFromEntity();
                     break;
                 default:
                     MessageBox.Show("ERROR typeBD");
@@ -61,6 +63,7 @@ namespace Lesson_6_Cashier
                     LoadUserShopFromSql();
                     break;
                 case TypeBD.Entity:
+                    LoadUserShopFromEntity();
                     break;
                 default:
                     MessageBox.Show("ERROR typeBD");
@@ -78,6 +81,7 @@ namespace Lesson_6_Cashier
                     LoadProductMovingFromSql();
                     break;
                 case TypeBD.Entity:
+                    LoadProductMovingFromEntity();
                     break;
                 default:
                     MessageBox.Show("ERROR typeBD");
@@ -95,6 +99,7 @@ namespace Lesson_6_Cashier
                     LoadUserRoleShopFromSql();
                     break;
                 case TypeBD.Entity:
+                    LoadUserRoleShopFromEntity();
                     break;
                 default:
                     MessageBox.Show("ERROR typeBD");
@@ -112,6 +117,7 @@ namespace Lesson_6_Cashier
                     SaveProductShopToSQL(prShop);
                     break;
                 case TypeBD.Entity:
+                    SaveProductShopToEntity(prShop);
                     break;
                 default:
                     MessageBox.Show("ERROR typeBD");
@@ -129,6 +135,7 @@ namespace Lesson_6_Cashier
                     SaveProductShopToSQL(id);
                     break;
                 case TypeBD.Entity:
+                    SaveProductShopToEntity(id);
                     break;
                 default:
                     MessageBox.Show("ERROR typeBD");
@@ -206,7 +213,7 @@ namespace Lesson_6_Cashier
         public static void SaveProductShopToXML(ProductShop product)
         {
             LoadProductShopFromXML();
-            if(Products.Any(it => it.ID == product.ID))
+            if (Products.Any(it => it.ID == product.ID))
             {
                 Products.First(it => it.ID == product.ID).Name = product.Name;
                 Products.First(it => it.ID == product.ID).PriceBuy = product.PriceBuy;
@@ -226,7 +233,7 @@ namespace Lesson_6_Cashier
                     xmlReader.Serialize(stream, Products);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Ошибка записи списка пользователей", "ошибка", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -245,7 +252,7 @@ namespace Lesson_6_Cashier
                     xmlReader.Serialize(stream, Products);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Ошибка записи списка пользователей", "ошибка", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -257,7 +264,7 @@ namespace Lesson_6_Cashier
             LoadProductMovingFromXML();
             if (ProductsMoving.Any(it => it.ID == product.ID))
             {
-                ProductsMoving.First(it => it.ID == product.ID).IDproduct = product.IDproduct ;
+                ProductsMoving.First(it => it.ID == product.ID).IDproduct = product.IDproduct;
                 ProductsMoving.First(it => it.ID == product.ID).CountStore = product.CountStore;
                 ProductsMoving.First(it => it.ID == product.ID).CountShop = product.CountShop;
                 ProductsMoving.First(it => it.ID == product.ID).Sold = product.Sold;
@@ -275,7 +282,7 @@ namespace Lesson_6_Cashier
                     xmlReader.Serialize(stream, ProductsMoving);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Ошибка записи списка пользователей", "ошибка", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -294,7 +301,7 @@ namespace Lesson_6_Cashier
                     xmlReader.Serialize(stream, ProductsMoving);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Ошибка записи списка пользователей", "ошибка", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -323,7 +330,7 @@ namespace Lesson_6_Cashier
                     xmlReader.Serialize(stream, ListUser);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Ошибка записи списка пользователей", "ошибка", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -342,7 +349,7 @@ namespace Lesson_6_Cashier
                     xmlReader.Serialize(stream, ListUser);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Ошибка записи списка пользователей", "ошибка", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -360,7 +367,7 @@ namespace Lesson_6_Cashier
                     Products = (List<ProductShop>)xmlReader.Deserialize(stream);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Ошибка загрузки списка пользователей", "ошибка", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -378,7 +385,7 @@ namespace Lesson_6_Cashier
                     ProductsMoving = (List<ProductMoving>)xmlReader.Deserialize(stream);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Ошибка загрузки списка пользователей", "ошибка", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -443,16 +450,8 @@ namespace Lesson_6_Cashier
                 comm.Parameters.Add("@price_buy", SqlDbType.Money).Value = prShop.PriceBuy;
                 comm.Parameters.Add("@price_sell", SqlDbType.Money).Value = prShop.PriceSell;
                 comm.Parameters.Add("@uom", SqlDbType.NVarChar).Value = prShop.UoM;
-                if (Products.Any(it => it.ID == prShop.ID))
-                {
-                    comm.CommandText = "ai_update_products";
-                    comm.ExecuteNonQuery();
-                }
-                else
-                {
-                    comm.CommandText = "ai_insert_products";
-                    comm.ExecuteNonQuery();
-                }
+                comm.CommandText = (Products.Any(it => it.ID == prShop.ID)) ? "ai_update_products" : "ai_insert_products";
+                comm.ExecuteNonQuery();
             }
         }
         public static void SaveProductShopToSQL(int id)
@@ -480,16 +479,8 @@ namespace Lesson_6_Cashier
                 comm.Parameters.Add("@count_store", SqlDbType.Decimal).Value = prodmoving.CountStore;
                 comm.Parameters.Add("@count_shop", SqlDbType.Decimal).Value = prodmoving.CountShop;
                 comm.Parameters.Add("@sold", SqlDbType.Decimal).Value = prodmoving.Sold;
-                if (ProductsMoving.Any(it => it.ID == prodmoving.ID))
-                {
-                    comm.CommandText = "ai_update_products_moving";
-                    comm.ExecuteNonQuery();
-                }
-                else
-                {
-                    comm.CommandText = "ai_insert_products_moving";
-                    comm.ExecuteNonQuery();
-                }
+                comm.CommandText = (ProductsMoving.Any(it => it.ID == prodmoving.ID)) ? "ai_update_products_moving" : "ai_insert_products_moving";
+                comm.ExecuteNonQuery();
             }
         }
         public static void SaveProductMovingToSQL(int id)
@@ -515,16 +506,8 @@ namespace Lesson_6_Cashier
                 comm.Parameters.Add("@login", SqlDbType.NVarChar).Value = usShop.Login;
                 comm.Parameters.Add("@password", SqlDbType.NVarChar).Value = usShop.Passwword;
                 comm.Parameters.Add("@id_role", SqlDbType.Int).Value = usShop.IDrole;
-                if (ListUser.Any(it => it.ID == usShop.ID))
-                {
-                    comm.CommandText = "ai_update_users";
-                    comm.ExecuteNonQuery();
-                }
-                else
-                {
-                    comm.CommandText = "ai_insert_users";
-                    comm.ExecuteNonQuery();
-                }
+                comm.CommandText = (ListUser.Any(it => it.ID == usShop.ID)) ? "ai_update_users" : "ai_insert_users";
+                comm.ExecuteNonQuery();
             }
         }
         public static void SaveUserShopToSQL(int id)
@@ -568,10 +551,10 @@ namespace Lesson_6_Cashier
                 var xmlReader = new XmlSerializer(typeof(List<UserShop>));
                 using (var stream = File.OpenRead(PathFileUsers))
                 {
-                  ListUser = (List<UserShop>)xmlReader.Deserialize(stream);
+                    ListUser = (List<UserShop>)xmlReader.Deserialize(stream);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Ошибка загрузки списка пользователей", "ошибка", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -589,7 +572,7 @@ namespace Lesson_6_Cashier
                     ListUserRole = (List<UserRoleShop>)xmlReader.Deserialize(stream);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Ошибка загрузки списка пользователей", "ошибка", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -616,5 +599,88 @@ namespace Lesson_6_Cashier
                 }
             }
         }
+        public static void LoadProductShopFromEntity()
+        {
+            Products.Clear();
+            foreach (var product in GetAllProductsFromEntity())
+            {
+                Products.Add(new ProductShop()
+                {
+                    ID = product.id,
+                    Name = product.Name,
+                    PriceBuy = (float)product.PriceBuy,
+                    PriceSell = (float)product.PriceSell,
+                    UoM = (UoM)Enum.Parse(typeof(UoM), product.UoM)
+                });
+            }
+        }
+        public static void LoadProductMovingFromEntity()
+        {
+            ProductsMoving.Clear();
+            foreach (var product in GetAllProductsMovingFromEntity())
+            {
+                ProductsMoving.Add(new ProductMoving()
+                {
+                    ID = product.id,
+                    IDproduct = product.idProduct,
+                    CountStore = (double)product.CountStore,
+                    CountShop = (double)product.CountShop,
+                    Sold = (double)product.Sold
+                });
+            }
+        }
+        public static void LoadUserShopFromEntity()
+        {
+            ListUser.Clear();
+            foreach (var product in GetAllUsersFromEntity())
+            {
+                ListUser.Add(new UserShop()
+                {
+                    ID = product.id,
+                    Login = product.Login,
+                    Passwword = product.Passwword,
+                    IDrole = product.idRole
+                });
+            }
+        }
+        public static void LoadUserRoleShopFromEntity()
+        {
+            ListUserRole.Clear();
+            foreach (var product in GetAllUserRolesFromEntity())
+            {
+                ListUserRole.Add(new UserRoleShop()
+                {
+                    ID = product.id,
+                    Role = (UserRole)Enum.Parse(typeof(UserRole), product.Role)
+                });
+            }
+        }
+        public static void SaveProductShopToEntity(ProductShop prShop)
+        {
+            LoadProductShopFromEntity();
+            EntityLibrary.Products products = new EntityLibrary.Products();
+            products.id = prShop.ID;
+            products.Name = prShop.Name;
+            products.PriceBuy = (decimal)prShop.PriceBuy;
+            products.PriceSell = (decimal)prShop.PriceSell;
+            products.UoM = prShop.UoM.ToString();
+            if (Products.Any(it => it.ID == prShop.ID))
+            {
+                UpdateProductsToEntity(products);
+            }
+            else
+            {
+                InsertProductsToEntity(products);
+            }
+        }
+        public static void SaveProductShopToEntity(int id)
+        {
+            DeleteProductsToEntity(id);
+        }
+        public static void SaveProductMovingToEntity(int id)
+        {
+            DeleteProductsMovingToEntity(id);
+        }
+
     }
 }

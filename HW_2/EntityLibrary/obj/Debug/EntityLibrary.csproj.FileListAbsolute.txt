@@ -1,0 +1,11 @@
+E:\ITStep\Home_work\ADO_NET\HW_2\EntityLibrary\obj\Debug\EntityLibrary.csprojAssemblyReference.cache
+E:\ITStep\Home_work\ADO_NET\HW_2\EntityLibrary\bin\Debug\EntityLibrary.dll.config
+E:\ITStep\Home_work\ADO_NET\HW_2\EntityLibrary\bin\Debug\EntityLibrary.dll
+E:\ITStep\Home_work\ADO_NET\HW_2\EntityLibrary\bin\Debug\EntityLibrary.pdb
+E:\ITStep\Home_work\ADO_NET\HW_2\EntityLibrary\bin\Debug\EntityFramework.dll
+E:\ITStep\Home_work\ADO_NET\HW_2\EntityLibrary\bin\Debug\EntityFramework.SqlServer.dll
+E:\ITStep\Home_work\ADO_NET\HW_2\EntityLibrary\bin\Debug\EntityFramework.xml
+E:\ITStep\Home_work\ADO_NET\HW_2\EntityLibrary\bin\Debug\EntityFramework.SqlServer.xml
+E:\ITStep\Home_work\ADO_NET\HW_2\EntityLibrary\obj\Debug\EntityLibrary.csproj.CopyComplete
+E:\ITStep\Home_work\ADO_NET\HW_2\EntityLibrary\obj\Debug\EntityLibrary.dll
+E:\ITStep\Home_work\ADO_NET\HW_2\EntityLibrary\obj\Debug\EntityLibrary.pdb

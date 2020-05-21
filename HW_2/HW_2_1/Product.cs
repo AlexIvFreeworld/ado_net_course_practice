@@ -26,7 +26,7 @@ namespace Lesson_6_Cashier
 
         public UoM UoM { get; set; }
 
-        public string[] setGridView1()
+        public string[] SetGridView1()
         {
             return new string[]{
                 Name,
@@ -79,7 +79,7 @@ namespace Lesson_6_Cashier
         [DisplayName("Единицы измерения")]
         public UoM UoM { get; set; }
 
-        public string[] setGridView2()
+        public string[] SetGridView2()
         {
             return new string[]{
                 Name,
@@ -102,7 +102,7 @@ namespace Lesson_6_Cashier
 
     public static class HelperProduct
     {
-        private static string PathFile;
+        private static readonly string PathFile;
         static string ConnectionString = ConfigurationManager.ConnectionStrings["MyConnString"].ConnectionString;
 
         static HelperProduct()
@@ -120,7 +120,7 @@ namespace Lesson_6_Cashier
                     xmlReader.Serialize(stream, products);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Ошибка записи списка пользователей", "ошибка", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -138,7 +138,7 @@ namespace Lesson_6_Cashier
                     return (List<Product>)xmlReader.Deserialize(stream);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Ошибка загрузки списка пользователей", "ошибка", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -232,7 +232,7 @@ namespace Lesson_6_Cashier
                     xmlReader.Serialize(stream, products);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Ошибка записи списка проданных товаров", "ошибка", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -250,7 +250,7 @@ namespace Lesson_6_Cashier
                     return (List<ProductSell>)xmlReader.Deserialize(stream);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Ошибка загрузки списка проданных товаров", "ошибка", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);

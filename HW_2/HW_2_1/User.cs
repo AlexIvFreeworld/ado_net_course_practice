@@ -49,7 +49,7 @@ namespace Lesson_6_Cashier
                     xmlReader.Serialize(stream, users);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Ошибка записи списка пользователей", "ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -66,7 +66,7 @@ namespace Lesson_6_Cashier
                     return (List<User>)xmlReader.Deserialize(stream);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Ошибка загрузки списка пользователей", "ошибка", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
