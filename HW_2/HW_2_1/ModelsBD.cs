@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,10 +9,10 @@ namespace Lesson_6_Cashier
 {
     public class ModelsBD
     {
-        public List<ProductShop> arrProductShop { get; set; }
-        public List<ProductMoving> arrProductMoving { get; set; }
-        public List<UserRoleShop> arrUserRoleShop { get; set; }
-        public List<UserShop> arrUserShop { get; set; }
+      //  public List<ProductShop> arrProductShop { get; set; }
+      //  public List<ProductMoving> arrProductMoving { get; set; }
+     //   public List<UserRoleShop> arrUserRoleShop { get; set; }
+      //  public List<UserShop> arrUserShop { get; set; }
 
     }
     [Serializable]
@@ -28,9 +29,13 @@ namespace Lesson_6_Cashier
     }
     public enum UoM
     {
+        [Description("Штуки")]
         Piece,
+        [Description("Кг")]
         Kg,
+        [Description("Литр")]
         Liter,
+        [Description("Банки")]
         Cans
     }
     [Serializable]

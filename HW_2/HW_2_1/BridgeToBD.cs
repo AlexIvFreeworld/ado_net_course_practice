@@ -153,6 +153,7 @@ namespace Lesson_6_Cashier
                     SaveProductMovingToSQL(prMove);
                     break;
                 case TypeBD.Entity:
+                    SaveProductMovingToEntity(prMove);
                     break;
                 default:
                     MessageBox.Show("ERROR typeBD");
@@ -170,6 +171,7 @@ namespace Lesson_6_Cashier
                     SaveProductMovingToSQL(id);
                     break;
                 case TypeBD.Entity:
+                    SaveProductMovingToEntity(id);
                     break;
                 default:
                     MessageBox.Show("ERROR typeBD");
@@ -187,6 +189,7 @@ namespace Lesson_6_Cashier
                     SaveUserShopToSQL(us);
                     break;
                 case TypeBD.Entity:
+                    SaveUserShopToEntity(us);
                     break;
                 default:
                     MessageBox.Show("ERROR typeBD");
@@ -204,6 +207,7 @@ namespace Lesson_6_Cashier
                     SaveUserShopToSQL(id);
                     break;
                 case TypeBD.Entity:
+                    SaveUserShopToEntity(id);
                     break;
                 default:
                     MessageBox.Show("ERROR typeBD");
@@ -673,6 +677,41 @@ namespace Lesson_6_Cashier
                 InsertProductsToEntity(products);
             }
         }
+        public static void SaveProductMovingToEntity(ProductMoving prMove)
+        {
+            LoadProductMovingFromEntity();
+            EntityLibrary.ProductsMoving prodMove = new EntityLibrary.ProductsMoving();
+            prodMove.id = prMove.ID;
+            prodMove.idProduct = prMove.IDproduct;
+            prodMove.CountStore = (decimal)prMove.CountStore;
+            prodMove.CountShop = (decimal)prMove.CountShop;
+            prodMove.Sold = (decimal)prMove.Sold;
+            if (ProductsMoving.Any(it => it.ID == prMove.ID))
+            {
+                UpdateProductsMovingToEntity(prodMove);
+            }
+            else
+            {
+                InsertProductsMovingToEntity(prodMove);
+            }
+        }
+        public static void SaveUserShopToEntity(UserShop user)
+        {
+            LoadUserShopFromEntity();
+            EntityLibrary.Users us = new EntityLibrary.Users();
+            us.id = user.ID;
+            us.Login = user.Login;
+            us.Passwword = user.Passwword;
+            us.idRole = user.IDrole;
+            if (ListUser.Any(it => it.ID == user.ID))
+            {
+                UpdateUsersToEntity(us);
+            }
+            else
+            {
+                InsertUsersToEntity(us);
+            }
+        }
         public static void SaveProductShopToEntity(int id)
         {
             DeleteProductsToEntity(id);
@@ -680,6 +719,10 @@ namespace Lesson_6_Cashier
         public static void SaveProductMovingToEntity(int id)
         {
             DeleteProductsMovingToEntity(id);
+        }
+        public static void SaveUserShopToEntity(int id)
+        {
+            DeleteUsersToEntity(id);
         }
 
     }

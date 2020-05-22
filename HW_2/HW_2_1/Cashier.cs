@@ -100,5 +100,19 @@ namespace Lesson_6_Cashier
             product.CountMarket -= ProductCashiers.Where(it => it.Name == product.Name).Sum(it => it.CountByPrices);
             panel1.Visible = false;
         }
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "UoM")
+            {
+                var enumValue = (UoM)e.Value;
+                e.Value = enumValue.GetDescription();
+            }
+
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Price")
+            {
+                e.Value = $"{e.Value:F} руб";
+            }
+        }
+
     }
 }

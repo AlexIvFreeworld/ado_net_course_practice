@@ -28,4 +28,11 @@
     <CountShop>189</CountShop>
     <Sold>111</Sold>
   </ProductMoving>
+  <ProductMoving>
+    <ID>5</ID>
+    <IDproduct>5</IDproduct>
+    <CountStore>0</CountStore>
+    <CountShop>100</CountShop>
+    <Sold>0</Sold>
+  </ProductMoving>
 </ArrayOfProductMoving>

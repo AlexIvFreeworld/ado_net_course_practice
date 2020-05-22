@@ -26,20 +26,25 @@ namespace Lesson_6_Cashier
             double totalProfit = 0;
             BridgeToBD.LoadProductShopFromDB(BridgeToBD.ChoiceBD);
             BridgeToBD.LoadProductMovingFromDB(BridgeToBD.ChoiceBD);
-            string[] str = new string[7]; 
+            string[] str = new string[7];
+            double[] result = new double[4];
              dataGridView1.Rows.Clear();
             foreach (var item in BridgeToBD.Products)
             {
                 str[0] = item.Name;
-                str[1] = BridgeToBD.ProductsMoving.First(it => it.IDproduct == item.ID).CountStore.ToString();
-                str[2] = BridgeToBD.ProductsMoving.First(it => it.IDproduct == item.ID).CountShop.ToString();
+                str[1] = BridgeToBD.ProductsMoving.First(it => it.IDproduct == item.ID).CountStore.ToString() + " " + item.UoM.GetDescription();
+                result[0] = BridgeToBD.ProductsMoving.First(it => it.IDproduct == item.ID).CountStore;
+                str[2] = BridgeToBD.ProductsMoving.First(it => it.IDproduct == item.ID).CountShop.ToString() + " " + item.UoM.GetDescription();
+                result[1] = BridgeToBD.ProductsMoving.First(it => it.IDproduct == item.ID).CountShop;
                 str[3] = item.PriceBuy.ToString();
                 str[4] = item.PriceSell.ToString();
-                str[5] = ((double.Parse(str[1]) + double.Parse(str[2])) * double.Parse(str[4])).ToString();
-                str[6] = ((double.Parse(str[1]) + double.Parse(str[2])) * (double.Parse(str[4]) - double.Parse(str[3]))).ToString();
+                str[5] = ((result[0] + result[1]) * double.Parse(str[4])).ToString();
+                result[2] = ((result[0] + result[1]) * double.Parse(str[4]));
+                str[6] = ((result[0] + result[1]) * (double.Parse(str[4]) - double.Parse(str[3]))).ToString();
+                result[3] = ((result[0] + result[1]) * (double.Parse(str[4]) - double.Parse(str[3])));
                 dataGridView1.Rows.Add(str);
-                totalCost += double.Parse(str[5]);
-                totalProfit += double.Parse(str[6]);
+                totalCost += result[2];
+                totalProfit += result[3];
             }
               textBoxTotalCost.Text = totalCost.ToString() + " " + "руб.";
               textBoxTotalProfit.Text = totalProfit.ToString() + " " + "руб.";
@@ -52,18 +57,22 @@ namespace Lesson_6_Cashier
             BridgeToBD.LoadProductShopFromDB(BridgeToBD.ChoiceBD);
             BridgeToBD.LoadProductMovingFromDB(BridgeToBD.ChoiceBD);
             string[] str = new string[6];
+            double[] result = new double[3];
             dataGridView2.Rows.Clear();
             foreach (var item in BridgeToBD.Products)
             {
                 str[0] = item.Name;
-                str[1] = BridgeToBD.ProductsMoving.First(it => it.IDproduct == item.ID).Sold.ToString();
+                str[1] = BridgeToBD.ProductsMoving.First(it => it.IDproduct == item.ID).Sold.ToString() + " " + item.UoM.GetDescription();
+                result[0] = BridgeToBD.ProductsMoving.First(it => it.IDproduct == item.ID).Sold;
                 str[2] = item.PriceSell.ToString();
                 str[3] = item.PriceBuy.ToString();
-                str[4] = (double.Parse(str[1]) * double.Parse(str[2])).ToString();
-                str[5] = ((double.Parse(str[2]) - double.Parse(str[3])) * double.Parse(str[1])).ToString();
+                str[4] = (result[0] * double.Parse(str[2])).ToString();
+                result[1] = (result[0] * double.Parse(str[2]));
+                str[5] = ((double.Parse(str[2]) - double.Parse(str[3])) * result[0]).ToString();
+                result[2] = ((double.Parse(str[2]) - double.Parse(str[3])) * result[0]);
                 dataGridView2.Rows.Add(str);
-                totalCost += double.Parse(str[4]);
-                totalProfit += double.Parse(str[5]);
+                totalCost += result[1];
+                totalProfit += result[2];
             }
             textBox1.Text = totalCost.ToString() + " " + "руб.";
             textBox2.Text = totalProfit.ToString() + " " + "руб.";
@@ -162,9 +171,34 @@ namespace Lesson_6_Cashier
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox3.Text == "" || textBox4.Text == "" || textBox5.Text == "" || textBox6.Text == "" || comboBox1.Text == "" || comboBox2.Text == "")
+            if (textBox3.Text == string.Empty)
             {
-                MessageBox.Show("Вы не заполнили некоторые поля", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Вы не заполнили поле 'Название товара'", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (comboBox1.Text == string.Empty)
+            {
+                MessageBox.Show("Вы не заполнили поле 'Единицы измерения'", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (textBox4.Text == "")
+            {
+                MessageBox.Show("Вы не заполнили поле 'Цена закупки'", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (textBox5.Text == "")
+            {
+                MessageBox.Show("Вы не заполнили поле 'Цена продажи'", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (textBox6.Text == "")
+            {
+                MessageBox.Show("Вы не заполнили поле 'Количество товара'", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (comboBox2.Text == "")
+            {
+                MessageBox.Show("Вы не заполнили поле 'Склад'", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
               BridgeToBD.LoadProductShopFromDB(BridgeToBD.ChoiceBD);
@@ -224,9 +258,19 @@ namespace Lesson_6_Cashier
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if(textBox7.Text == "" || comboBox3.Text == "" || textBox8.Text == "")
+            if(textBox7.Text == "")
             {
-                MessageBox.Show("Поля заполнены не полностью", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Вы не заполнили поле 'Логин'", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if(textBox8.Text == "")
+            {
+                MessageBox.Show("Вы не заполнили поле 'Пароль'", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if(comboBox3.Text == "")
+            {
+                MessageBox.Show("Вы не заполнили поле 'Должность'", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             if(BridgeToBD.ListUser.Any(it => String.Equals(it.Login, textBox7.Text, StringComparison.OrdinalIgnoreCase))) // it need case insensitive
@@ -286,9 +330,19 @@ namespace Lesson_6_Cashier
                 MessageBox.Show("Редактирование единственного пользователя Менеджер невозможно!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            if (textBox7.Text == "" || comboBox3.Text == "" || textBox8.Text == "")
+            if(textBox7.Text == "")
             {
-                MessageBox.Show("Поля заполнены не полностью", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Вы не заполнили поле 'Логин'", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if(textBox8.Text == "")
+            {
+                MessageBox.Show("Вы не заполнили поле 'Пароль'", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if(comboBox3.Text == "")
+            {
+                MessageBox.Show("Вы не заполнили поле 'Должность'", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             string currentLogin = listView1.SelectedItems[0].SubItems[0].Text;
@@ -313,6 +367,44 @@ namespace Lesson_6_Cashier
         {
             F = new FormInformation();
             F.Show();
+        }
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "priceBuy")
+            {
+                e.Value = $"{e.Value:F} руб";
+            }
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "priceSell")
+            {
+                e.Value = $"{e.Value:F} руб";
+            }
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "totalCost")
+            {
+                e.Value = $"{e.Value:F} руб";
+            }
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "profitPlan")
+            {
+                e.Value = $"{e.Value:F} руб";
+            }
+        }
+        private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "priceBuy")
+            {
+                e.Value = $"{e.Value:F} руб";
+            }
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "priceSell")
+            {
+                e.Value = $"{e.Value:F} руб";
+            }
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "totalSell")
+            {
+                e.Value = $"{e.Value:F} руб";
+            }
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "allProfit")
+            {
+                e.Value = $"{e.Value:F} руб";
+            }
         }
     }
 }

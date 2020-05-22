@@ -18,4 +18,10 @@
     <Passwword>C4CA4238A0B923820DCC509A6F75849B</Passwword>
     <IDrole>2</IDrole>
   </UserShop>
+  <UserShop>
+    <ID>8</ID>
+    <Login>Login44</Login>
+    <Passwword>C4CA4238A0B923820DCC509A6F75849B</Passwword>
+    <IDrole>1</IDrole>
+  </UserShop>
 </ArrayOfUserShop>

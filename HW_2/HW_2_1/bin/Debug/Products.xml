@@ -28,4 +28,11 @@
     <PriceSell>23</PriceSell>
     <UoM>Cans</UoM>
   </ProductShop>
+  <ProductShop>
+    <ID>5</ID>
+    <Name>Oil</Name>
+    <PriceBuy>35</PriceBuy>
+    <PriceSell>55</PriceSell>
+    <UoM>Liter</UoM>
+  </ProductShop>
 </ArrayOfProductShop>
